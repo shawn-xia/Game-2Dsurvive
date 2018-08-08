@@ -8,6 +8,7 @@ public class Player : MonoBehaviour {
 
     [SerializeField]
     private float movementSpeed;
+    private float storedSpeed;
 
     private bool facingRight;
 
@@ -37,19 +38,20 @@ public class Player : MonoBehaviour {
     [SerializeField]
     public bool OnTree;
 
+    public bool Visible;
 
-
-
-
-
-
+    GameObject lefttree;
 
 
 	// Use this for initialization
 	void Start () {
+        storedSpeed = movementSpeed;
         facingRight = true;
         myRigidbody = GetComponent<Rigidbody2D>();
         myAnimator = GetComponent<Animator>();
+        Visible = true;
+        lefttree = GameObject.Find("Tree_3");
+
 
 
 
@@ -72,7 +74,7 @@ public class Player : MonoBehaviour {
 
         HandleMovement(horizontal,vertical);
 
-        Debug.Log(jump);
+        //Debug.Log(jump);
 
         Flip(horizontal);
 
@@ -98,7 +100,12 @@ public class Player : MonoBehaviour {
             myRigidbody.velocity = new Vector2(0, vertical * movementSpeed);
         }
 
-
+        GameObject tree = GameObject.Find("Tree_3");
+        if(Visible){
+            lefttree.SetActive(true);
+        }else{
+            lefttree.SetActive(false);
+        }
 
 
         myAnimator.SetFloat("speed", Mathf.Abs(horizontal));
@@ -122,6 +129,8 @@ public class Player : MonoBehaviour {
         }
     }
 
+
+
     private void HandleInput(){
         if(Input.GetKeyDown(KeyCode.Space)){
             jump = true;
@@ -129,8 +138,13 @@ public class Player : MonoBehaviour {
 
         if(Input.GetKeyDown(KeyCode.LeftShift)){
             attack = true;
-
         }
+
+        if(Input.GetKeyDown(KeyCode.V)){
+            Visible = !Visible;
+        }
+
+
     }
 
     private void ResetValue(){
@@ -175,6 +189,15 @@ public class Player : MonoBehaviour {
             bridge.transform.rotation = Quaternion.Slerp(bridge.transform.rotation, newr, 1f);
         }
 
+        if (collision.tag == "Bush")
+        {
+            movementSpeed = 1;
+            //Debug.Log(movementSpeed);
+           
+        }
+
+
+
 
     }
 
@@ -184,6 +207,12 @@ public class Player : MonoBehaviour {
         {
             OnTree = false;
             Physics2D.IgnoreCollision(GameObject.Find("Tree_3").GetComponent<BoxCollider2D>(), GameObject.Find("Player").GetComponent<BoxCollider2D>(), false);
+        }
+
+        if (collision.tag == "Bush")
+        {
+            movementSpeed = storedSpeed;
+
         }
     }
 
