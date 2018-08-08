@@ -167,6 +167,14 @@ public class Player : MonoBehaviour {
             Physics2D.IgnoreCollision(GameObject.Find("Tree_3").GetComponent<BoxCollider2D>(), GameObject.Find("Player").GetComponent<BoxCollider2D>(), true);
         }
 
+        if (collision.tag == "Brige")
+        {
+            GameObject bridge = GameObject.Find("Bridge");
+            bridge.transform.position = new Vector3(9,-3,0);
+            Quaternion newr = Quaternion.Euler(0, 0, -90f);
+            bridge.transform.rotation = Quaternion.Slerp(bridge.transform.rotation, newr, 1f);
+        }
+
 
     }
 
