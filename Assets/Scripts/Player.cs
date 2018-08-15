@@ -182,10 +182,10 @@ public class Player : MonoBehaviour {
             transform.position = respawnPoint;
         }
 
-        if (collision.tag == "chasingEnemy")
-        {
-            transform.position = respawnPoint;
-        }
+        //if (collision.tag == "chasingEnemy")
+        //{
+        //    transform.position = respawnPoint;
+        //}
 
 
         if(collision.tag == "Ladder"){
