@@ -176,6 +176,12 @@ public class Player : MonoBehaviour {
             transform.position = respawnPoint;
         }
 
+        if (collision.tag == "chasingEnemy")
+        {
+            transform.position = respawnPoint;
+        }
+
+
         if(collision.tag == "Tree"){
             OnTree = true;
             Physics2D.IgnoreCollision(GameObject.Find("Tree_3").GetComponent<BoxCollider2D>(), GameObject.Find("Player").GetComponent<BoxCollider2D>(), true);
