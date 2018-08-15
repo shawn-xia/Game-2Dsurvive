@@ -40,8 +40,8 @@ public class Player : MonoBehaviour {
 
     public bool Visible;
 
-    GameObject lefttree;
-
+    //GameObject lefttree;
+    GameObject[] ladders;
 
 	// Use this for initialization
 	void Start () {
@@ -50,10 +50,8 @@ public class Player : MonoBehaviour {
         myRigidbody = GetComponent<Rigidbody2D>();
         myAnimator = GetComponent<Animator>();
         Visible = true;
-        lefttree = GameObject.Find("Tree_3");
-
-
-
+        //lefttree = GameObject.Find("Ladder");
+        ladders = GameObject.FindGameObjectsWithTag("Ladder");
 
 	}
 
@@ -100,16 +98,24 @@ public class Player : MonoBehaviour {
             myRigidbody.velocity = new Vector2(0, vertical * movementSpeed);
         }
 
-        GameObject tree = GameObject.Find("Tree_3");
+
         if(Visible){
-            lefttree.SetActive(true);
+            //ladders.SetActive(true);
+            setLadders(ladders, true);
         }else{
-            lefttree.SetActive(false);
+            //lefttree.SetActive(false);
+            setLadders(ladders, false);
         }
 
 
         myAnimator.SetFloat("speed", Mathf.Abs(horizontal));
 
+    }
+
+    private void setLadders(GameObject[] Ladders, bool b){
+        foreach(GameObject ladder in Ladders){
+            ladder.SetActive(b);
+        }
     }
 
     private void Flip( float horizontal){
@@ -182,9 +188,9 @@ public class Player : MonoBehaviour {
         }
 
 
-        if(collision.tag == "Tree"){
+        if(collision.tag == "Ladder"){
             OnTree = true;
-            Physics2D.IgnoreCollision(GameObject.Find("Tree_3").GetComponent<BoxCollider2D>(), GameObject.Find("Player").GetComponent<BoxCollider2D>(), true);
+            ignoreLaddersColission(ladders, true);
         }
 
         if (collision.tag == "Brige")
@@ -201,18 +207,23 @@ public class Player : MonoBehaviour {
             //Debug.Log(movementSpeed);
            
         }
-
-
-
-
     }
+
+    private void ignoreLaddersColission(GameObject[] Ladders, bool b)
+    {
+        foreach (GameObject ladder in Ladders)
+        {
+            Physics2D.IgnoreCollision(ladder.GetComponent<BoxCollider2D>(), GameObject.Find("Player").GetComponent<BoxCollider2D>(), b);
+        }
+    }
+
 
     void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.tag == "Tree")
+        if (collision.tag == "Ladder")
         {
             OnTree = false;
-            Physics2D.IgnoreCollision(GameObject.Find("Tree_3").GetComponent<BoxCollider2D>(), GameObject.Find("Player").GetComponent<BoxCollider2D>(), false);
+            ignoreLaddersColission(ladders, false);
         }
 
         if (collision.tag == "Bush")
