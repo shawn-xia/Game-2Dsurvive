@@ -38,10 +38,13 @@ public class Player : MonoBehaviour {
     [SerializeField]
     public bool OnTree;
 
-    public bool Visible;
+    public bool LadderVisible;
+
 
     //GameObject lefttree;
     GameObject[] ladders;
+
+    GameObject[] stones;
 
 	// Use this for initialization
 	void Start () {
@@ -49,9 +52,10 @@ public class Player : MonoBehaviour {
         facingRight = true;
         myRigidbody = GetComponent<Rigidbody2D>();
         myAnimator = GetComponent<Animator>();
-        Visible = true;
+        LadderVisible = true;
         //lefttree = GameObject.Find("Ladder");
         ladders = GameObject.FindGameObjectsWithTag("Ladder");
+        stones = GameObject.FindGameObjectsWithTag("Stone");
 
 	}
 
@@ -99,12 +103,14 @@ public class Player : MonoBehaviour {
         }
 
 
-        if(Visible){
+        if(LadderVisible){
             //ladders.SetActive(true);
             setLadders(ladders, true);
+            setLadders(stones, false);
         }else{
             //lefttree.SetActive(false);
             setLadders(ladders, false);
+            setLadders(stones, true);
         }
 
 
@@ -147,7 +153,7 @@ public class Player : MonoBehaviour {
         }
 
         if(Input.GetKeyDown(KeyCode.V)){
-            Visible = !Visible;
+            LadderVisible = !LadderVisible;
         }
 
 
