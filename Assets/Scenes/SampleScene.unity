@@ -925,6 +925,7 @@ MonoBehaviour:
   jumpForce: 500
   respawnPoint: {x: -10.4, y: 2.9, z: 0}
   OnTree: 0
+  Lives: 2
   LadderVisible: 0
 --- !u!50 &109519305
 Rigidbody2D:

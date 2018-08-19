@@ -46,10 +46,10 @@ public class chasingEnemy : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-
+            
             Vector3 moveDirection = enemyRigid.transform.position - collision.transform.position;
             enemyRigid.AddForce(moveDirection.normalized * 500f);
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(1.2f);
             enemyRigid.AddForce(-moveDirection.normalized * 500f);
 
 

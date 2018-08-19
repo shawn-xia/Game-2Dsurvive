@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class Player : MonoBehaviour {
 
     private Rigidbody2D myRigidbody;
@@ -37,6 +37,9 @@ public class Player : MonoBehaviour {
 
     [SerializeField]
     public bool OnTree;
+
+    [SerializeField]
+    public int Lives;
 
     public bool LadderVisible;
 
@@ -188,10 +191,12 @@ public class Player : MonoBehaviour {
             transform.position = respawnPoint;
         }
 
-        //if (collision.tag == "chasingEnemy")
-        //{
-        //    transform.position = respawnPoint;
-        //}
+        if (collision.tag == "chasingEnemy")
+        {
+            //transform.position = respawnPoint;
+            Lives--;
+            handledestroy();
+        }
 
 
         if(collision.tag == "Ladder"){
@@ -213,6 +218,15 @@ public class Player : MonoBehaviour {
             //Debug.Log(movementSpeed);
            
         }
+    }
+
+    void handledestroy(){
+        if(Lives<=0){
+            //Destroy(GameObject.FindGameObjectWithTag("Player"));
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            Debug.Log("Game Over");
+        }
+        
     }
 
     private void ignoreLaddersColission(GameObject[] Ladders, bool b)
