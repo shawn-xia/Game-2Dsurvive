@@ -64,7 +64,10 @@
     <Compile Include="Assets\Scripts\CamerFollow.cs" />
     <Compile Include="Assets\Scripts\chasingEnemy.cs" />
     <Compile Include="Assets\Scripts\CollisionTrigger.cs" />
+    <Compile Include="Assets\Scripts\Mainmenu.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
+    <Compile Include="Assets\Scripts\restartButton.cs" />
+    <Compile Include="Assets\Scripts\Timer.cs" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>/Users/mingmacbook/Downloads/2Dninja/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>

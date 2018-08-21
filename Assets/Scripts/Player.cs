@@ -223,10 +223,21 @@ public class Player : MonoBehaviour {
     void handledestroy(){
         if(Lives<=0){
             //Destroy(GameObject.FindGameObjectWithTag("Player"));
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            GameObject.Find("Player").SendMessage("Finish");
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             Debug.Log("Game Over");
+            PauseGame();
         }
         
+    }
+
+    public void restart(){
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    private void PauseGame(){
+        Time.timeScale = 0;
+
     }
 
     private void ignoreLaddersColission(GameObject[] Ladders, bool b)
