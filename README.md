@@ -1,4 +1,4 @@
-# Comp313
+# 2D-survive
 Michael and Mingxuan on Thursday slot
 
    Survive
