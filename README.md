@@ -1,15 +1,20 @@
 # 2D-survive
-Michael and Mingxuan on Thursday slot
+2D platform game aiming to create a competitive environment encourating players to survive longer.
 
-   Survive
+
+# Details
+
+The name of the game is survive, the main idea is player controls the character to survive as long as possible. Player got 5 lives, mean you can touch mushroom 5 times until you die. And can use button V to toggle trees and rock.
+
+# material source
 Pictures in 2D game from http://www.gameart2d.com/freebies.html
 Demo:  https://youtu.be/4B9007eENIo
 Git repository: https://github.com/woaitang131426/Comp313
 Commits history: https://github.com/woaitang131426/Comp313/commits/master
 
 
-The name of the game is survive, the main idea is player controls the character to survive as long as possible. Player got 5 lives, mean you can touch mushroom 5 times until you die. And can use button V to toggle trees and rock.
-           
+
+# Others          
 Character actions: jump, move left and right, climb->yellow tree, push down green tree.
 Kick mushroom back(if you use head and jump to do that, it is a good push).
 
